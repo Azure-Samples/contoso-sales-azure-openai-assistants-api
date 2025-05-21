@@ -40,7 +40,7 @@ class EventHandler(AsyncAssistantEventHandler):
     @override
     async def on_text_delta(self: "EventHandler", delta, snapshot):
         if snapshot.value and markdown_link_pattern.search(snapshot.value):
-            await self.current_message.remove()
+            # await self.current_message.remove()
             snapshot.value = markdown_link_pattern.sub(r"\1", snapshot.value)
             await cl.Message(content=snapshot.value).send()
         if snapshot.value and citation_pattern.search(snapshot.value):
@@ -107,10 +107,11 @@ class EventHandler(AsyncAssistantEventHandler):
         image_id = image_file.file_id
         response = await self.async_openai_client.files.with_raw_response.content(image_id)
         image_element = cl.Image(name=image_id, content=response.content, display="inline", size="large")
-        await self.async_openai_client.files.delete(image_id)
+
         if not self.current_message.elements:
             self.current_message.elements = []
         self.current_message.elements.append(image_element)
+        
         await self.current_message.update()
 
     async def update_chainlit_function_ui(self, language: str, tool_call, result: QueryResults) -> None:
