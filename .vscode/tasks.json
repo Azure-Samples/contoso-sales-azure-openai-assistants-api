@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Deploy to Azure",
+            "type": "shell",
+            "command": "./deploy-to-azure.sh",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Azure Login (CLI)",
+            "type": "shell",
+            "command": "az",
+            "args": ["login", "--use-device-code"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Azure Developer CLI Login",
+            "type": "shell", 
+            "command": "azd",
+            "args": ["auth", "login", "--use-device-code"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always", 
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Local Development Server",
+            "type": "shell",
+            "command": "chainlit",
+            "args": ["run", "src/app.py", "--host", "0.0.0.0", "--port", "8000"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "View Azure Resources",
+            "type": "shell",
+            "command": "azd",
+            "args": ["show"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

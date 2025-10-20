@@ -35,7 +35,7 @@
       "chainlitAuthSecret": {
         "value": "${CHAINLIT_AUTH_SECRET}"
       },
-      "LiteralApiKey": {
+      "literalApiKey": {
         "value": "${LITERAL_API_KEY}"
       }
     }

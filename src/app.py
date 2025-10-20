@@ -24,7 +24,8 @@ AZURE_OPENAI_API_KEY = os.environ.get("AZURE_OPENAI_API_KEY")
 AZURE_OPENAI_API_VERSION = os.environ.get("AZURE_OPENAI_API_VERSION")
 AZURE_OPENAI_ASSISTANT_ID = os.environ.get("AZURE_OPENAI_ASSISTANT_ID")
 AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT")
-ASSISTANT_PASSWORD = os.getenv("ASSISTANT_PASSWORD")
+# ASSISTANT_PASSWORD = os.getenv("ASSISTANT_PASSWORD", "password")  # 배포 시 환경변수로 설정됨
+ASSISTANT_PASSWORD = "password"  # 기본값: "password"
 
 MAX_COMPLETION_TOKENS = 4096
 MAX_PROMPT_TOKENS = 10240
@@ -57,10 +58,10 @@ function_map: Dict[str, Callable[[Any], str]] = {
 @cl.password_auth_callback
 async def auth_callback(username: str, password: str) -> cl.User | None:
     """Authenticate the user"""
-    # Normally, you would check the username and password against a database.
+    # 실제 배포 환경에서는 DB 또는 환경변수 기반으로 비밀번호를 관리하세요.
     # Or use OAuth or custom provider for authentication.
     # See Chainlit documentation https://docs.chainlit.io/authentication/overview
-    if (username, password) == ("sales@contoso.com", ASSISTANT_PASSWORD):
+    if (username, password) == ("sales@contoso.com", ASSISTANT_PASSWORD):  # 비밀번호는 현재 'password'로 고정됨
         return cl.User(identifier="sales@contoso.com", metadata={"role": "sales", "provider": "credentials"})
     return None
 
