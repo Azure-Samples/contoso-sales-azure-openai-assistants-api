@@ -37,7 +37,7 @@ azd up
 
 - **🌐 애플리케이션 URL**: `https://[앱이름].azurecontainerapps.io/sales`
 - **👤 사용자명**: `sales@contoso.com`  
-- **🔑 비밀번호**: 배포 시 자동 생성됨
+- **🔑 비밀번호**: `password` (기본값 고정)
 
 ⚠️ **중요**: URL 끝에 `/sales` 경로를 반드시 포함해야 합니다.
 
@@ -81,7 +81,7 @@ AZURE_OPENAI_API_KEY=your-api-key
 AZURE_OPENAI_API_VERSION=2024-05-01-preview
 AZURE_OPENAI_DEPLOYMENT=gpt-4o
 AZURE_OPENAI_ASSISTANT_ID=your-assistant-id
-ASSISTANT_PASSWORD=your-password
+# ASSISTANT_PASSWORD는 기본값 "password" 사용
 ```
 
 4. **로컬 실행**:
@@ -116,7 +116,7 @@ chainlit run app.py
 
 - `CHAINLIT_AUTH_SECRET`: Chainlit 인증용 시크릿 (자동 생성)
 - `LITERAL_API_KEY`: Literal AI API 키 (자동 생성)
-- `ASSISTANT_PASSWORD`: 애플리케이션 접속 비밀번호 (자동 생성)
+- `ASSISTANT_PASSWORD`: 애플리케이션 접속 비밀번호 (기본값: `password`)
 
 ### 사용자 정의
 

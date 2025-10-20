@@ -13,6 +13,7 @@ echo "🔐 Setting up default Azure deployment parameters..."
 # Generate secure random secrets
 CHAINLIT_AUTH_SECRET=$(openssl rand -base64 32)
 LITERAL_API_KEY=$(openssl rand -base64 32)
+# ASSISTANT_PASSWORD=$(openssl rand -base64 32)  # 비밀번호 자동 생성 주석 처리
 
 # Create .env file with default values if it doesn't exist
 if [ ! -f .env ]; then
@@ -32,7 +33,8 @@ AZURE_OPENAI_DEPLOYMENT=gpt-4o
 AZURE_OPENAI_ASSISTANT_ID=
 
 # Application Configuration
-ASSISTANT_PASSWORD=
+# ASSISTANT_PASSWORD=${ASSISTANT_PASSWORD}  # 비밀번호 자동 생성 주석 처리, 기본값 "password" 사용
+ASSISTANT_PASSWORD=password
 ENV=development
 EOF
     echo "✅ Created .env file with default configuration"
